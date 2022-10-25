@@ -10,17 +10,11 @@
  ****************************************************************************/
 
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#define SIZE 100000
+int a[SIZE],b[SIZE];
 
-/****************************************************************************
- *                                                                          *
- * Function: main                                                           *
- *                                                                          *
- * Purpose : Main entry point.                                              *
- *                                                                          *
- * History : Date      Reason                                               *
- *           00/00/00  Created                                              *
- *                                                                          *
- ****************************************************************************/
 void InsertionSort(int *A, int n){
         int i;
 	 int j;
@@ -71,22 +65,28 @@ void merge_sort(int* A,int low,int high){
 }
 
 int main(int argc, char *argv[])
-{
- int b[]={7,3,2,4,8,5};
- 	int c;
-	InsertionSort(b,6);
-for(c = 0; c < 6; c++)
-	{
- 		printf("%d ", b[c]);
+{	int k[10]={3,6,2,5,8,97,5,2,4,0};
+	clock_t time_begin,time_end;
+	double result = 0;
+	for (int i=0; i<=100000; i++){
+    		a[i] = rand();
 	}
-	printf("\n");
-    int a[]={3,9,5,4,64,4,5,9,8,9};
- 	int i;
- 	merge_sort(a, 0, 9);
- 	for(i = 0; i < 10; i++)
-	{
- 		printf("%d ", a[i]);
+	for (int i=0; i<=100000; i++){
+    		b[i] = rand();
 	}
+	time_begin = clock();
+	InsertionSort(b,100000);
+	time_end = clock();
+	result = (double)(time_end-time_begin)/CLOCKS_PER_SEC*1000;
+	printf("\n\nRunning Time£º%fms\n",result);
+   	time_begin = clock();
+ 	merge_sort(k, 0,9);
+	time_end = clock();
+ 	for(int d = 0; d <= 9; d++){
+ 		printf("%d ", k[d]);
+	}
+	result = (double)(time_end-time_begin)/CLOCKS_PER_SEC*1000;
+	printf("\n\nRunning Time£º%fms\n",result);
  	return 0; 
 }
 
